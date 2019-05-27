@@ -24,11 +24,11 @@ function buildMetadata(sample) {
     // buildGauge(data.WFREQ);
 function buildGauge (sample){
   d3.json("/metadata/" + sample).then(function(response) {
-    var level = response.WFREQ * 20;
+    var level = response.WFREQ;
     console.log(level);
 
     // Trig to calc meter point
-    var degrees = 180 - level,
+    var degrees = 180 - (level * 20),
         radius = .5;
     var radians = degrees * Math.PI / 180;
     var x = radius * Math.cos(radians);
@@ -46,7 +46,7 @@ function buildGauge (sample){
       x: [0], y:[0],
         marker: {size: 28, color:'850000'},
         showlegend: false,
-        name: 'speed',
+        name: 'washes',
         text: level,
         hoverinfo: 'text+name'},
       { values: [50/9, 50/9, 50/9, 50/9, 50/9, 50/9, 50/9, 50/9, 50/9, 50],
